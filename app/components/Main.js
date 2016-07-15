@@ -3,10 +3,16 @@ var React = require('react');
 var Main = React.createClass({
 	render: function(){
 		return (
-				<div className="main-container">
-				<h1>This is the Header</h1>
+				<div className="">
+				<div className="ui menu">
+					<h1>NewsMap</h1>
+					<div className="right menu">
+						<button className="ui button">How it Works</button>
+						<button className="ui button">About</button>
+					</div>
+				</div>
 				{this.props.children}
-				<h3>The foother</h3>
+				<div className="footer centered">copyright text</div>
 				</div>
 			) 
 	}
