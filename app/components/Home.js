@@ -6,8 +6,9 @@ var Home = React.createClass({
     render: function(){
         return (
                 <div className='ui two column centered grid'>
-                    <div className="column"><h1>Github Battle</h1>
-                    <button className='ui button red block'>Let's get Started!</button>
+                    <div className="ui container">
+                        I love expensive stuff but love to live simple
+                        <h3>and i love that</h3>
                     </div>
                 </div>
             )
