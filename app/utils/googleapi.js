@@ -3,7 +3,7 @@ var countries = require('./countries.json')
 
 
 function getCountries(){
-	console.log(countries);
+	console.log('This is the shit', countries[0]);
 
 }
 

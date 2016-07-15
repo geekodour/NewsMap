@@ -10,7 +10,7 @@ var MapContainer = React.createClass({
 	},
 	componentDidMount : function(){
 		google.load('visualization', '1.1', {packages: ['geochart'], callback: drawVisualization});
-		console.log('LOADED BRO');
+		googleapi.getPlayersInfo();
 		function drawVisualization() {
 		    var data = google.visualization.arrayToDataTable([
 		        ['Country', 'Value', {role: 'tooltip', p:{html:true}}],
