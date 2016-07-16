@@ -1,6 +1,10 @@
 var React = require('react');
+var googleapi = require('../utils/googleapi');
 
 var Main = React.createClass({
+	componentDidMount : function(){
+		googleapi.genCacheArray().then(function(data){console.log(data)})
+	},
 	render: function(){
 		return (
 				<div className="">
