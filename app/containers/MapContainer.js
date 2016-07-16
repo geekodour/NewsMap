@@ -10,12 +10,13 @@ var MapContainer = React.createClass({
 	},
 	componentDidMount : function(){
 		google.load('visualization', '1.1', {packages: ['geochart'], callback: drawVisualization});
-		googleapi.getPlayersInfo();
+		googleapi.getMapArray().then(function(info){console.log('REAL SHIT',info,'AND AND',googleapi.getNews())});
+
 		function drawVisualization() {
 		    var data = google.visualization.arrayToDataTable([
 		        ['Country', 'Value', {role: 'tooltip', p:{html:true}}],
 		        ['Russia', 5, '<h1>this is a nice string</h1>'],
-		        ['US', 20, '<img src="https://www.google.com/images/srpr/logo6w.png"/>']]);
+		        ['US', 200, '<img src="https://www.google.com/images/srpr/logo6w.png"/>']]);
 		    var chart = new google.visualization.GeoChart(document.getElementById('myMap'));
 		    chart.draw(data, {
 		        width: '100%',

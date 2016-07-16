@@ -1,23 +1,47 @@
 var axios = require('axios');
-var countries = require('./countries.json')
+var jsonp = require('jsonp');
+
+//var newsByCountry = ['bman bro'];
 
 
 function getCountries(){
-	console.log('This is the shit', countries[0]);
+	return axios.get('https://raw.githubusercontent.com/geekodour/newsmap-react/master/app/utils/countries.json');
 
 }
 
-
-
-
-//googlenewsUrl = "https://news.google.com/news?q=" + countryName + "&output=rss";
-//finalUrl = '//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=50&callback=JSONP_CALLBACK&q=' + encodeURIComponent(googlenewsUrl);
+function getNewsForCountry(country){
+	let googlenewsUrl = 'https://news.google.com/news?q=' + country + '&output=rss';
+	let finalUrl = 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=' + encodeURIComponent(googlenewsUrl);
+	jsonp(
+			finalUrl
+			,null
+			,function(err,data){
+				if(err){console.error('THERE WAS THE ERROR')}
+				else {console.log(data);}
+			}
+		);
+}
 
 
 var helpers = {
-    getPlayersInfo: function(){
-		getCountries();     
+    getMapArray: function(){
+		return axios.all(
+				getCountries()
+					.then(function(info){return (info.data)})
+					.then(function(data){
+						data.map(function(country){
+							return getNewsForCountry(country.name)
+						})
+					})
+					.then(function(yata){
+						console.log(yata)
+					})
+			)
+    },
+    getNews : function(){
+    	return newsByCountry; 
     }
+
 
 
 };
