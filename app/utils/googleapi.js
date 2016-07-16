@@ -4,16 +4,41 @@ var jsonp = require('jsonp');
 var newsByCountry = [];
 
 
+function genOutputArrayObject(data){0
+		let countryName = data.title.split(' ')[0];
+		let newsTitles = [];
+		let newsHTML = "<ul>";
+		
+		data.entries.forEach(function(news){
+			let temp = {html:''};
+			temp.link = news.link;
+			temp.title = news.title;
+			temp.content = news.content;
+			newsHTML = newsHTML+'<li>'+news.title.split('-')[0]+'</li>';
+			newsTitles.push(temp);
+		});
+		newsHTML = newsHTML+"</ul>";
+		//return countryName;
+		//let results = [countryName,newsTitles,newsHTML];
+		let results = {'countryName':countryName,'newsTitles':newsTitles,'newsHTML':newsHTML};
+		newsByCountry.push(results);
+		return results;									
+}
+
+
 function getCountries(){
 	return axios.get('https://raw.githubusercontent.com/geekodour/newsmap-react/master/app/utils/countries.json')
-				/*.then(function(info){
+				.then(function(info){
 					return info.data;
 				})
 				.then(function(data){
-					return Promise.all(data.map(function(country){
+					return axios.all(data.map(function(country){
 						return getNewsForCountry(country.name);
 					}))
-				})*/
+				})
+				.then(function(data){
+					return data
+				})
 	;
 
 }
@@ -71,9 +96,8 @@ var helpers = {
 
 			
     },
-    getNews : function(){
-    	return newsByCountry; 
-    }
+    getNews : getCountries
+
 
 
 

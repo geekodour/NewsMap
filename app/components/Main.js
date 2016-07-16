@@ -3,7 +3,7 @@ var googleapi = require('../utils/googleapi');
 
 var Main = React.createClass({
 	componentDidMount : function(){
-		googleapi.genCacheArray().then(function(data){console.log(data)})
+		googleapi.getNews().then(function(data){console.log(data)})
 	},
 	render: function(){
 		return (
