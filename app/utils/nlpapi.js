@@ -10,7 +10,9 @@ function scoreCalc(wordsArray){
 	
 	let score = 0;	
 	wordsArray.forEach(function(current){
+		current = current.toLowerCase();
 		if(current in wordScore){
+			console.log("WORDS USED: ",current," SC: ",wordScore[current]);
 			score = score + parseInt(wordScore[current]);
 		} //end of if block
 	})	
@@ -50,6 +52,7 @@ function giveScore(){
 					words = words.concat(tempWords);
 				}); //END OF FOR EACH
 				let score = scoreCalc(words);
+				countryNewsHTML = "<p>Happiness:"+score.toString()+"</p>"+countryNewsHTML;
 				let tempArray = [countryName,score,countryNewsHTML];
 				arrayForMapChart.push(tempArray)
 				//console.log(count+=1,":: ",countryName," : ",score,"AND THE WORDS: ",words)

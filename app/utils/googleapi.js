@@ -52,7 +52,7 @@ function getCountryNews(){
 
 function getNewsForCountry(country){
 	let googlenewsUrl = 'https://news.google.com/news?q=' + country + '&output=rss';
-	let finalUrl = 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=' + encodeURIComponent(googlenewsUrl);
+	let finalUrl = 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&q=' + encodeURIComponent(googlenewsUrl);
 	return new Promise(function(resolve,reject){
 		jsonp(
 			finalUrl
