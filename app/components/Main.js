@@ -1,9 +1,11 @@
 var React = require('react');
 var googleapi = require('../utils/googleapi');
+var nlpapi = require('../utils/nlpapi');
 
 var Main = React.createClass({
 	componentDidMount : function(){
-		googleapi.getNews().then(function(data){console.log(data)})
+//		googleapi.getNews().then(function(data){console.log(data)})
+		nlpapi.logNews();
 	},
 	render: function(){
 		return (

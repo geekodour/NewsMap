@@ -3,41 +3,48 @@ var jsonp = require('jsonp');
 
 var newsByCountry = [];
 
-
-function genOutputArrayObject(data){0
-		let countryName = data.title.split(' ')[0];
-		let newsTitles = [];
-		let newsHTML = "<ul>";
-		
-		data.entries.forEach(function(news){
-			let temp = {html:''};
-			temp.link = news.link;
-			temp.title = news.title;
-			temp.content = news.content;
-			newsHTML = newsHTML+'<li>'+news.title.split('-')[0]+'</li>';
-			newsTitles.push(temp);
-		});
-		newsHTML = newsHTML+"</ul>";
-		//return countryName;
-		//let results = [countryName,newsTitles,newsHTML];
-		let results = {'countryName':countryName,'newsTitles':newsTitles,'newsHTML':newsHTML};
-		newsByCountry.push(results);
-		return results;									
-}
+//THE FUNCTION BELOW CONTAINS TWO DIFFERENT FUNCTIONALTIES, GETING COUNTRY JSON
+//AND THE UJING PROMISES ON THEM, AND THEN MAKING THE ARRAY, NEED OF SEPARATION
+// IS REQUIRED LATER
 
 
-function getCountries(){
+// ALO THIS HIT GETS CALLED TWICE FOR SOME UNKNOWN REASON
+
+function getCountryNews(){
+	console.log('I AM GETTING CALLED NOW SUPREME KAI');
 	return axios.get('https://raw.githubusercontent.com/geekodour/newsmap-react/master/app/utils/countries.json')
 				.then(function(info){
+					console.log('INFO NO 1.ALL TIME CALLED');
 					return info.data;
 				})
 				.then(function(data){
-					return axios.all(data.map(function(country){
+					console.log('AXIOS.ALL TIME CALLED');
+					return Promise.all(data.map(function(country){
 						return getNewsForCountry(country.name);
 					}))
 				})
 				.then(function(data){
-					return data
+					console.log('I AM MAP WRAPPER');
+					return data.map((newsData) => {
+						let count = 0;
+						let countryName = newsData.title.split(' ')[0];
+						let newsTitles = [];
+						let newsHTML = "<ul>";
+						newsData.entries.forEach(function(news){
+							let temp = {};
+							temp.link = news.link;
+							temp.title = news.title.split('-')[0];
+							temp.content = news.content;
+							newsHTML = newsHTML+'<li>'+temp.title+'</li>';
+							newsTitles.push(temp);
+						});
+						newsHTML = newsHTML+"</ul>";
+						//return countryName;
+						//let results = [countryName,newsTitles,newsHTML];
+						let results = {'countryName':countryName,'newsTitles':newsTitles,'newsHTML':newsHTML};
+						console.log(count+=1);
+						return results;
+					})
 				})
 	;
 
@@ -63,40 +70,11 @@ function getNewsForCountry(country){
 
 
 var helpers = {
-    genCacheArray: function(){
-		return getCountries()
-					.then(function(info){return (info.data)})
-					.then(function(data){
-						return data.map(function(country){
-							return getNewsForCountry(country.name)
-								.then(function(a){ 
-									let countryName = a.title.split(' ')[0];
-									let newsTitles = [];
-									let newsHTML = "<ul>";
-									a.entries.forEach(function(news){
-										let temp = {html:''};
-										temp.link = news.link;
-										temp.title = news.title;
-										temp.content = news.content;
-										newsHTML = newsHTML+'<li>'+news.title.split('-')[0]+'</li>';
-										newsTitles.push(temp);
-									});
-									newsHTML = newsHTML+"</ul>";
-									//return countryName;
-									//let results = [countryName,newsTitles,newsHTML];
-									let results = {'countryName':countryName,'newsTitles':newsTitles,'newsHTML':newsHTML};
-									newsByCountry.push(results);
-									return results;
-								});
-						})
-					})
-					.catch(function(err){
-		            console.warn('ERROE BRO');
-		       	    })
-
-			
-    },
-    getNews : getCountries
+    getNews : getCountryNews
+    ,
+    getNewsByCountryArray : function(){
+    	return newsByCountry;
+    }
 
 
 
