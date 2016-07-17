@@ -1,20 +1,14 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 
-function Map(props){
-	return props.isLoading == true
-			? <p> WAIT</p>
-			: 
-			<div id="myMap">
-				This is me teh map {props.country} fuck
-				THE DOPE STUFF : 
-				{props.datStuff}
-			</div>
-}
-
-Map.propTypes = {
-	country: PropTypes.string.isRequired
+var Map = React.createClass({
+	render: function(){
+		return this.props.isLoading
+			? <p> It's Loading brother </p>
+			: <div id="myMap"></div>
+		
+	},
 
 
-}
+})
 module.exports = Map;

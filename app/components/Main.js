@@ -5,7 +5,7 @@ var nlpapi = require('../utils/nlpapi');
 var Main = React.createClass({
 	componentDidMount : function(){
 //		googleapi.getNews().then(function(data){console.log(data)})
-		nlpapi.logNews().then(function(a){console.log(a)});
+//		nlpapi.logNews().then(function(a){console.log(a)});
 	},
 	render: function(){
 		return (
