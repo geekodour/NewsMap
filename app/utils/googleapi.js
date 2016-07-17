@@ -11,20 +11,16 @@ var newsByCountry = [];
 // ALO THIS HIT GETS CALLED TWICE FOR SOME UNKNOWN REASON
 
 function getCountryNews(){
-	console.log('I AM GETTING CALLED NOW SUPREME KAI');
 	return axios.get('https://raw.githubusercontent.com/geekodour/newsmap-react/master/app/utils/countries.json')
 				.then(function(info){
-					console.log('INFO NO 1.ALL TIME CALLED');
 					return info.data;
 				})
 				.then(function(data){
-					console.log('AXIOS.ALL TIME CALLED');
 					return Promise.all(data.map(function(country){
 						return getNewsForCountry(country.name);
 					}))
 				})
 				.then(function(data){
-					console.log('I AM MAP WRAPPER');
 					return data.map((newsData) => {
 						let count = 0;
 						let countryName = newsData.title.split(' - ')[0];

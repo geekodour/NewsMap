@@ -12,7 +12,7 @@ function scoreCalc(wordsArray){
 	wordsArray.forEach(function(current){
 		current = current.toLowerCase();
 		if(current in wordScore){
-			console.log("WORDS USED: ",current," SC: ",wordScore[current]);
+			//console.log("WORDS USED: ",current," SC: ",wordScore[current]);
 			score = score + parseInt(wordScore[current]);
 		} //end of if block
 	})	
