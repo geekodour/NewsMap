@@ -1,4 +1,4 @@
-{
+module.exports = {
   "abandon": "-2",
   "abandoned": "-2",
   "abandons": "-2",
@@ -7948,4 +7948,4 @@
   "zenith": "1",
   "zest": "1",
   "zippy": "1"
-}
+};

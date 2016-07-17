@@ -13,7 +13,7 @@ var MapContainer = React.createClass({
 	},
 	render: function(){
 		return (
-		<Map isLoading={this.state.isLoading} 
+		<Map 
 			 country="India"
 			 dataStuff={nlpapi.logNews()}/>
 		)
@@ -28,19 +28,20 @@ var MapContainer = React.createClass({
 */
 
 		//TEST COMMANDS			
-/*		google.load('visualization', '1.1', {packages: ['geochart'], callback: drawVisualization});
+		google.load('visualization', '1.1', {packages: ['geochart'], callback: drawVisualization});
 		function drawVisualization() {
 		    var data = google.visualization.arrayToDataTable([
 		        ['Country', 'Value', {role: 'tooltip', p:{html:true}}],
 		        ['Russia', 5, '<h1>this is a nice string</h1>'],
-		        ['US', 200, `<img src="https://www.google.com/images/srpr/logo6w.png"/>`]]);
+		        ['United States', 200, `<img src="https://www.google.com/images/srpr/logo6w.png"/>`],
+		        ['India',-20,`<h1>POOP</h1>`]]);
 		    var chart = new google.visualization.GeoChart(document.getElementById('myMap'));
 		    chart.draw(data, {
 		        width: '100%',
 		        height: 500,
 		        tooltip: {isHtml: true}  })
 		} 
-*/
+
 	}
 
 })

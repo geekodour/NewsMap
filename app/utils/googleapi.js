@@ -27,7 +27,7 @@ function getCountryNews(){
 					console.log('I AM MAP WRAPPER');
 					return data.map((newsData) => {
 						let count = 0;
-						let countryName = newsData.title.split(' ')[0];
+						let countryName = newsData.title.split(' - ')[0];
 						let newsTitles = [];
 						let newsHTML = "<ul>";
 						newsData.entries.forEach(function(news){

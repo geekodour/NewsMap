@@ -1,25 +1,26 @@
 var googleapi = require('./googleapi');
 var nlp = require('nlp_compromise');
-var wordScore = require('./wordscore.js')
+var wordScore = require('./myjson.js');
 
 var mydata = [];
-function genArray(){
-	googleapi.getNews()
-		.then(function(data){
-			mydata = data;
-			console.log(mydata)
-		})
-		.catch(function(err){
-			console.log('SOME HIT HAPPENED')
-		})
+
+function scoreCalc(wordsArray){
+	
+	let score = 0;	
+	wordsArray.forEach(function(current){
+		if(current in wordScore){
+			score = score + parseInt(wordScore[current]);
+		} //end of if block
+	})	
+	return score;
 }
+
 
 function giveScore(){
 	googleapi.getNews()
 		.then(function(data){
 			var count = 0;
 		data.map(function(countryNews){
-				let score = 0;
 				let words = [];
 				let countryName = countryNews.countryName;
 				let countryNewsHTML = countryNews.newsHTML;
@@ -27,9 +28,13 @@ function giveScore(){
 					let nouns = nlp.sentence(element.title).nouns();
 					let verbs = nlp.sentence(element.title).verbs();
 					let adjectives = nlp.sentence(element.title).adjectives();
+					//FILTERS 
 					verbs = verbs.filter(function(verb){
 						return verb.tag != "Copula"
 					}); //END OF VERB FILTER
+
+
+					//FILTERS END
 					nouns = nouns.map(function(noun){
 						return noun.text;
 					}); //END OF NOUN MAP
@@ -40,11 +45,11 @@ function giveScore(){
 						return adjective.text;
 					});
 					//CONCAT VERB AND NOUN
-					let tempWords = verbs.concat(adjectives);
+					let tempWords = verbs.concat(nouns,adjectives);
 					words = words.concat(tempWords);
 				}); //END OF FOR EACH
-				console.log(words);
-				console.log(count+=1);
+				let score = scoreCalc(words);
+				console.log(count+=1,":: ",countryName," : ",score,"AND THE WORDS: ",words)
 			//	return words;
 			}); //END OF MAP AFTER THEN
 		})
