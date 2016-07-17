@@ -27,7 +27,9 @@ function giveScore(){
 				let words = [];
 				let countryName = countryNews.countryName;
 				let countryNewsHTML = countryNews.newsHTML;
+				//console.log("NAME: ",countryName);
 				countryNews.newsTitles.forEach( function(element, index) {
+					//console.log(element.title);
 					let nouns = nlp.sentence(element.title).nouns();
 					let verbs = nlp.sentence(element.title).verbs();
 					let adjectives = nlp.sentence(element.title).adjectives();
@@ -54,7 +56,7 @@ function giveScore(){
 				let score = scoreCalc(words);
 				countryNewsHTML = "<p>Happiness:"+score.toString()+"</p>"+countryNewsHTML;
 				let tempArray = [countryName,score,countryNewsHTML];
-				arrayForMapChart.push(tempArray)
+				//arrayForMapChart.push(tempArray)
 				//console.log(count+=1,":: ",countryName," : ",score,"AND THE WORDS: ",words)
 			//	return words;
 				return tempArray;

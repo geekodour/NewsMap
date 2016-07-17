@@ -29,7 +29,7 @@ function getCountryNews(){
 						newsData.entries.forEach(function(news){
 							let temp = {};
 							temp.link = news.link;
-							temp.title = news.title.split('-')[0];
+							temp.title = news.title;//.split(' - ')[0];
 							temp.content = news.content;
 							newsHTML = newsHTML+'<li>'+temp.title+'</li>';
 							newsTitles.push(temp);
@@ -38,7 +38,6 @@ function getCountryNews(){
 						//return countryName;
 						//let results = [countryName,newsTitles,newsHTML];
 						let results = {'countryName':countryName,'newsTitles':newsTitles,'newsHTML':newsHTML};
-						console.log(count+=1);
 						return results;
 					})
 				})
