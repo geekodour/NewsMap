@@ -1,8 +1,10 @@
 var googleapi = require('./googleapi');
 var nlp = require('nlp_compromise');
-var wordScore = require('./myjson.js');
+var wordScore = require('./wordscore.js');
 
-var mydata = [];
+var arrayForMapChart = [
+			['Country', 'Value', {role: 'tooltip', p:{html:true}}]
+];
 
 function scoreCalc(wordsArray){
 	
@@ -17,10 +19,9 @@ function scoreCalc(wordsArray){
 
 
 function giveScore(){
-	googleapi.getNews()
+	return googleapi.getNews()
 		.then(function(data){
-			var count = 0;
-		data.map(function(countryNews){
+		return data.map(function(countryNews){
 				let words = [];
 				let countryName = countryNews.countryName;
 				let countryNewsHTML = countryNews.newsHTML;
@@ -49,15 +50,21 @@ function giveScore(){
 					words = words.concat(tempWords);
 				}); //END OF FOR EACH
 				let score = scoreCalc(words);
-				console.log(count+=1,":: ",countryName," : ",score,"AND THE WORDS: ",words)
+				let tempArray = [countryName,score,countryNewsHTML];
+				arrayForMapChart.push(tempArray)
+				//console.log(count+=1,":: ",countryName," : ",score,"AND THE WORDS: ",words)
 			//	return words;
+				return tempArray;
 			}); //END OF MAP AFTER THEN
 		})
 		return 
 }
 
 var nlphelpers = {
-	logNews : giveScore 
+	logNews : giveScore,
+	returnMapArray : function(){
+		return arrayForMapChart;
+	} 
 }
 
 

@@ -3,7 +3,7 @@ var Map = require('../components/Map');
 var googleapi = require('../utils/googleapi');
 var nlpapi = require('../utils/nlpapi');
 
-
+var arrayFromNLP = nlpapi.returnMapArray();
 
 var MapContainer = React.createClass({
 	getInitialState: function(){
@@ -15,7 +15,7 @@ var MapContainer = React.createClass({
 		return (
 		<Map 
 			 country="India"
-			 dataStuff={nlpapi.logNews()}/>
+			 />
 		)
 	},
 	componentDidMount : function(){
@@ -30,11 +30,7 @@ var MapContainer = React.createClass({
 		//TEST COMMANDS			
 		google.load('visualization', '1.1', {packages: ['geochart'], callback: drawVisualization});
 		function drawVisualization() {
-		    var data = google.visualization.arrayToDataTable([
-		        ['Country', 'Value', {role: 'tooltip', p:{html:true}}],
-		        ['Russia', 5, '<h1>this is a nice string</h1>'],
-		        ['United States', 200, `<img src="https://www.google.com/images/srpr/logo6w.png"/>`],
-		        ['India',-20,`<h1>POOP</h1>`]]);
+		    var data = google.visualization.arrayToDataTable(arrayFromNLP);
 		    var chart = new google.visualization.GeoChart(document.getElementById('myMap'));
 		    chart.draw(data, {
 		        width: '100%',
