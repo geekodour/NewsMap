@@ -8,7 +8,8 @@ var newsByCountry = [];
 // IS REQUIRED LATER
 
 
-// ALO THIS HIT GETS CALLED TWICE FOR SOME UNKNOWN REASON
+// ALO THIS HIT GETS CALLED TWICE FOR SOME UNKNOWN REASON 
+//TWICE iS FIXED, Don't KNOW HOW.
 
 function getCountryNews(){
 	return axios.get('https://raw.githubusercontent.com/geekodour/newsmap-react/master/app/utils/countries.json')
@@ -16,7 +17,7 @@ function getCountryNews(){
 					return info.data;
 				})
 				.then(function(data){
-					return Promise.all(data.map(function(country){
+					return axios.all(data.map(function(country){
 						return getNewsForCountry(country.name);
 					}))
 				})
