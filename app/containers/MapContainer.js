@@ -38,7 +38,11 @@ var MapContainer = React.createClass({
 		    chart.draw(data, {
 		        width: '100%',
 		        height: 500,
-		        tooltip: {isHtml: true}  })
+		        tooltip: {isHtml: true},
+		        defaultColor: "#c0392b",
+		        datalessRegionColor: "#8e44ad",
+		        legend  : {textStyle:{color: "#2980b9"}},
+		        backgroundColor: "#2c3e50"})
 		}
 			//END OF MAP INITIATION
 
