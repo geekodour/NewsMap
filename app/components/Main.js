@@ -1,6 +1,8 @@
 var React = require('react');
 var googleapi = require('../utils/googleapi');
 var nlpapi = require('../utils/nlpapi');
+var styles = require('../styles/styles');
+
 
 var Main = React.createClass({
 	componentDidMount : function(){
@@ -10,11 +12,11 @@ var Main = React.createClass({
 	render: function(){
 		return (
 				<div className="">
-				<div className="ui menu">
-					<h1>NewsMap</h1>
+				<div className="ui inverted menu" style={styles.noRoundBorders}>
+					<h1 style={styles.whiteText} >NewsMap</h1>
 					<div className="right menu">
-						<button className="ui button">How it Works</button>
-						<button className="ui button">About</button>
+						<button className="ui basic inverted red button">How it Works</button>
+						<button className="ui basic inverted red button">About</button>
 					</div>
 				</div>
 				{this.props.children}
