@@ -9,14 +9,12 @@ var MapContainer = React.createClass({
 	getInitialState: function(){
 		return {
 			isLoading : true,
-			arrayFromNLP : ["aao"],
 		}
 	},
 	render: function(){
 		return (
 		<Map 
 			 isLoading = {this.state.isLoading}
-			 arrayFromNLP = {this.state.arrayFromNLP}
 			 />
 		)
 	},
@@ -26,7 +24,6 @@ var MapContainer = React.createClass({
 		nlpapi.logNews().then(function(data){
 			this.setState({
 				isLoading : false,
-				arrayFromNLP : data,
 			});
 			//INITIATE THE MAP HERE
 

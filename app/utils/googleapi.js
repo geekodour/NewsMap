@@ -1,7 +1,6 @@
 var axios = require('axios');
 var jsonp = require('jsonp');
 
-var newsByCountry = [];
 
 //THE FUNCTION BELOW CONTAINS TWO DIFFERENT FUNCTIONALTIES, GETING COUNTRY JSON
 //AND THE UJING PROMISES ON THEM, AND THEN MAKING THE ARRAY, NEED OF SEPARATION
@@ -23,7 +22,6 @@ function getCountryNews(){
 				})
 				.then(function(data){
 					return data.map((newsData) => {
-						let count = 0;
 						let countryName = newsData.title.split(' - ')[0];
 						let newsTitles = [];
 						let newsHTML = "<ul>";

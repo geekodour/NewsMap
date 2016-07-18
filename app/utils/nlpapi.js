@@ -2,9 +2,6 @@ var googleapi = require('./googleapi');
 var nlp = require('nlp_compromise');
 var wordScore = require('./wordscore.js');
 
-var arrayForMapChart = [
-			['Country', 'Value', {role: 'tooltip', p:{html:true}}]
-];
 
 function scoreCalc(wordsArray){
 	
@@ -66,10 +63,7 @@ function giveScore(){
 }
 
 var nlphelpers = {
-	logNews : giveScore,
-	returnMapArray : function(){
-		return arrayForMapChart;
-	} 
+	logNews : giveScore
 }
 
 
