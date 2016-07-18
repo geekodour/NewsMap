@@ -30,7 +30,7 @@ var MapContainer = React.createClass({
 			let mapData = [['Country', 'Value', {role: 'tooltip', p:{html:true}}]];
 			mapData = mapData.concat(data);
 			//console.log("DATA:",data)
-			//console.log("MAP DATA AFT:",mapData);
+			console.log("MAP DATA AFT:",mapData);
 		google.load('visualization', '1.1', {packages: ['geochart'], callback: drawVisualization});
 		function drawVisualization() {
 		    var data = google.visualization.arrayToDataTable(mapData);

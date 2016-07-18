@@ -22,7 +22,6 @@ function giveScore(){
 		.then(function(data){
 		return data.map(function(countryNews){
 				let words = [];
-				let countryName = countryNews.countryName;
 				let countryNewsHTML = countryNews.newsHTML;
 				//console.log("NAME: ",countryName);
 				countryNews.newsTitles.forEach( function(element, index) {
@@ -51,8 +50,8 @@ function giveScore(){
 					words = words.concat(tempWords);
 				}); //END OF FOR EACH
 				let score = scoreCalc(words);
-				countryNewsHTML = "<p>Happiness:"+score.toString()+"</p>"+countryNewsHTML;
-				let tempArray = [countryName,score,countryNewsHTML];
+				countryNewsHTML = "<p>Sentiment score of "+countryNews.countryName+":"+score.toString()+"</p>"+countryNewsHTML;
+				let tempArray = [countryNews.countryCode,score,countryNewsHTML];
 				//arrayForMapChart.push(tempArray)
 				//console.log(count+=1,":: ",countryName," : ",score,"AND THE WORDS: ",words)
 			//	return words;

@@ -17,12 +17,13 @@ function getCountryNews(){
 				})
 				.then(function(data){
 					return axios.all(data.map(function(country){
-						return getNewsForCountry(country.name);
+						return getNewsForCountry(country.name,country.code);
 					}))
 				})
 				.then(function(data){
 					return data.map((newsData) => {
 						let countryName = newsData.title.split(' - ')[0];
+						let countryCode = newsData.code;
 						let newsTitles = [];
 						let newsHTML = "<ul>";
 						newsData.entries.forEach(function(news){
@@ -36,7 +37,11 @@ function getCountryNews(){
 						newsHTML = newsHTML+"</ul>";
 						//return countryName;
 						//let results = [countryName,newsTitles,newsHTML];
-						let results = {'countryName':countryName,'newsTitles':newsTitles,'newsHTML':newsHTML};
+						let results = {
+							'countryName':countryName,
+							'countryCode':countryCode,
+							'newsTitles':newsTitles,
+							'newsHTML':newsHTML};
 						return results;
 					})
 				})
@@ -44,7 +49,7 @@ function getCountryNews(){
 
 }
 
-function getNewsForCountry(country){
+function getNewsForCountry(country,code){
 	let googlenewsUrl = 'https://news.google.com/news?q=' + country + '&output=rss';
 	let finalUrl = 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&q=' + encodeURIComponent(googlenewsUrl);
 	return new Promise(function(resolve,reject){
@@ -55,6 +60,7 @@ function getNewsForCountry(country){
 				if(err){reject(err)}
 				else {
 					if(data.responseData){
+					data.responseData.feed.code = code;
 					resolve(data.responseData.feed)}}
 			}
 		);	
