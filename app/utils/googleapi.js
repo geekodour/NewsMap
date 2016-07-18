@@ -1,6 +1,6 @@
 var axios = require('axios');
 var jsonp = require('jsonp');
-
+var countries = require('./countries.json');
 
 //THE FUNCTION BELOW CONTAINS TWO DIFFERENT FUNCTIONALTIES, GETING COUNTRY JSON
 //AND THE UJING PROMISES ON THEM, AND THEN MAKING THE ARRAY, NEED OF SEPARATION
