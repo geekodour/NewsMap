@@ -50,8 +50,8 @@ function giveScore(){
 					words = words.concat(tempWords);
 				}); //END OF FOR EACH
 				let score = scoreCalc(words);
-				countryNewsHTML = "<p>Sentiment score of "+countryNews.countryName+":"+score.toString()+"</p>"+countryNewsHTML;
-				let tempArray = [countryNews.countryCode,score,countryNewsHTML];
+				countryNewsHTML = "<div class='ui label'>"+"<i class='"+countryNews.countryCode.toLowerCase()+" flag'></i> "+countryNews.countryName+" ("+score.toString()+")"+"</div>"+ countryNewsHTML;
+				let tempArray = [countryNews.countryCode,parseInt(score),countryNewsHTML];
 				//arrayForMapChart.push(tempArray)
 				//console.log(count+=1,":: ",countryName," : ",score,"AND THE WORDS: ",words)
 			//	return words;

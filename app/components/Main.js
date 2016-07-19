@@ -15,12 +15,20 @@ var Main = React.createClass({
 				<div className="ui inverted menu" style={styles.noRoundBorders}>
 					<h1 style={styles.whiteText} >NewsMap</h1>
 					<div className="right menu">
-						<button className="ui basic inverted red button">How it Works</button>
-						<button className="ui basic inverted red button">About</button>
-					</div>
+						<div className="ui item">
+						<div className="ui basic inverted red button" style={styles.bebutton}>How it Works</div>
+						</div>
+						<div className="ui item">
+						<div className="ui basic inverted red button" style={styles.bebutton}>About</div>
+						</div>
+					</div >
 				</div>
 				{this.props.children}
-				<div className="footer centered">copyright text</div>
+				<div className="ui two column centered grid">
+					<div className="column">
+				  Made by <a href="https://github.com/geekodour">Hrishikesh Barman</a> - July 2016
+				  	</div>
+				</div>
 				</div>
 			) 
 	}

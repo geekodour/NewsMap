@@ -3,9 +3,19 @@ var PropTypes = React.PropTypes;
 
 var Map = React.createClass({
 	render: function(){
-		return this.props.isLoading
-			? <p> It's Loading brother </p>
-			: <div id="myMap"></div>
+		if(this.props.isLoading){
+			return ( 
+				<div className="ui segment" style={{"height":"400px"}}>
+				  <div className="ui active dimmer">
+				    <div className="ui large text loader">Fetching news of All Countries</div>
+				  </div>
+				  <p></p>
+				</div>)
+			}
+			
+		else 
+			return <div id="myMap"></div>
+			
 		
 	},
 

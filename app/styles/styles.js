@@ -1,9 +1,16 @@
 var styles  = {
-	noRoundBoarders : {
-		"border-radius" : 0
+	noRoundBorders : {
+		"borderRadius" : "0px"
 	},
 	whiteText : {
-		"color": "white"
+		"color": "white",
+		"paddingLeft" : "1em"
+	},
+	paddingTop : {
+		"paddingTop" : "10px"
+	},
+	bigegment : {
+		"height" : "300px"
 	}
 }
 
