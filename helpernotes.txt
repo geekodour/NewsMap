@@ -1,0 +1,2 @@
+mongo querty from actors ina a movie: db.actors.find({"movies.name": "Fast Five"},{name:1,_id:0}).pretty()
+
